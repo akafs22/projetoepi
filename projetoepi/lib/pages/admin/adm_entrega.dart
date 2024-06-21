@@ -45,34 +45,37 @@ class _AdminEntregaState extends State<AdminEntrega> {
       appBar: AppBar(
         title: const Text('Administrativo'),
       ),
-      body: Consumer<EntregaProvider>(
-        builder: (context, dataProvider, _) {
-          if (dataProvider.carregando == true) {
-            return const Center(
-              child: CircularProgressIndicator()
-            );
-          } else {
-          return ListView.builder(
-            itemCount: dataProvider.colaboradores.length,
-            itemBuilder: (context, index) {
-
-              final colaborador = dataProvider.colaboradores[index]; 
-              return ListTile(
-                title: Text(dataProvider.colaboradores[index]['nomeCol']),
-                subtitle: Text(dataProvider.colaboradores[index]['email']),
-                trailing: IconButton(icon: const Icon(Icons.delete, color: Colors.red,),
-                onPressed: () async {
-                  await _confirmDelete(context, colaborador['idCol']);
-                },),
-                onTap: () {
-                  dataProvider.setSelectedColaborador(
-                    dataProvider.colaboradores [index]['idCol'],
-                    dataProvider.colaboradores [index]['nomeCol']);
-                    Navigator.pushNamed(context, '/episentrega');
-                }
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Consumer<EntregaProvider>(
+          builder: (context, dataProvider, _) {
+            if (dataProvider.carregando == true) {
+              return const Center(
+                child: CircularProgressIndicator()
               );
-            });
-        }})
+            } else {
+            return ListView.builder(
+              itemCount: dataProvider.colaboradores.length,
+              itemBuilder: (context, index) {
+        
+                final colaborador = dataProvider.colaboradores[index]; 
+                return ListTile(
+                  title: Text(dataProvider.colaboradores[index]['nomeCol']),
+                  subtitle: Text(dataProvider.colaboradores[index]['email']),
+                  trailing: IconButton(icon: const Icon(Icons.delete, color: Colors.red,),
+                  onPressed: () async {
+                    await _confirmDelete(context, colaborador['idCol']);
+                  },),
+                  onTap: () {
+                    dataProvider.setSelectedColaborador(
+                      dataProvider.colaboradores [index]['idCol'],
+                      dataProvider.colaboradores [index]['nomeCol']);
+                      Navigator.pushNamed(context, '/episentrega');
+                  }
+                );
+              });
+          }}),
+      )
     );
   }
 }

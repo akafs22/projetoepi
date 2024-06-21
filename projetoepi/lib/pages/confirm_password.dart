@@ -23,44 +23,47 @@ class ConfirmPassword extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Confirme a Senha'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('E-mail: $email'),
-              Text('CPF: $cpf'),
-              TextFormField(
-                controller: passwordController,
-                decoration: const InputDecoration(labelText: 'Senha'),
-                obscureText: true,
-              ),
-              TextFormField(
-                controller: confirmPasswordController,
-                decoration: const InputDecoration(labelText: 'Senha'),
-                obscureText: true,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              customButton(
-                tap: ()  async {
-                  if (passwordController.text != confirmPasswordController.text) {
-                    showMessage(
-                      message: "As senhas devem ser iguais",
-                      context: context);
-                  } else {
-                    var cpfint = cpf.replaceAll(RegExp(r'[^0-9]'), '');
-                    validarsenha.createUser(email, passwordController.text, cpfint);
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('E-mail: $email'),
+                Text('CPF: $cpf'),
+                TextFormField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(labelText: 'Senha'),
+                  obscureText: true,
+                ),
+                TextFormField(
+                  controller: confirmPasswordController,
+                  decoration: const InputDecoration(labelText: 'Senha'),
+                  obscureText: true,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                customButton(
+                  tap: ()  async {
+                    if (passwordController.text != confirmPasswordController.text) {
                       showMessage(
-                        message: validarsenha.msgErrorApi,
+                        message: "As senhas devem ser iguais",
                         context: context);
-                  }
-                },
-               text: 'Concluir',
-               context: context,
-               status: validarsenha.carregando
-              )
-            ],
+                    } else {
+                      var cpfint = cpf.replaceAll(RegExp(r'[^0-9]'), '');
+                      validarsenha.createUser(email, passwordController.text, cpfint);
+                        showMessage(
+                          message: validarsenha.msgErrorApi,
+                          context: context);
+                    }
+                  },
+                 text: 'Concluir',
+                 context: context,
+                 status: validarsenha.carregando
+                )
+              ],
+            ),
           ),
         ),
       );

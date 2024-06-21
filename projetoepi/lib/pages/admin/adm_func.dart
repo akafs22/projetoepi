@@ -42,75 +42,78 @@ class _AdminFuncState extends State<AdminFunc> {
           appBar: AppBar(
             title: const Text('Administrativo'),
           ),
-          body: SingleChildScrollView(
-            child: Form(
-              child: Center(
-                child: Column(
-                  children: [
-                    customTextField(
-                        title: 'Nome do funcionário',
-                        controller: _nome,
-                        hint: 'Digite o nome do funcionário',
-                        tipo: TextInputType.text),
-                    customTextField(
-                        title: 'Ctps',
-                        controller: _ctps,
-                        hint: 'Digite o ctps do funcionário',
-                        tipo: TextInputType.text),
-                    customTextField(
-                        title: 'Telefone',
-                        controller: _telefone,
-                        hint: 'Digite o telefone do funcionário',
-                        tipo: TextInputType.phone,
-                        formatacao: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          TelefoneInputFormatter(),
-                        ]),
-                    customTextField(
-                        title: 'Cpf',
-                        controller: _cpf,
-                        hint: 'Digite o cpf do funcionário',
-                        tipo: TextInputType.number,
-                        formatacao: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          CpfInputFormatter()
-                        ]),
-                    customTextField(
-                        title: 'E-mail',
-                        controller: _email,
-                        hint: 'Digite o email do funcionário',
-                        tipo: TextInputType.emailAddress),
-                    customTextField(
-                        title: 'Data de admissão',
-                        controller: _dataAdmissao,
-                        hint: 'Digite a data de admissão do funcionário',
-                        tipo: TextInputType.datetime,
-                        formatacao: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          DataInputFormatter(),
-                        ]),
-                    customButton(
-                        tap: () {
-                          if (_formKey.currentState!.validate()) {
-                            colabprovider.cadastrar(
-                                context,
-                                _nome.text,
-                                _ctps.text,
-                                _telefone.text,
-                                _cpf.text,
-                                _email.text,
-                                _dataAdmissao.text);
-                          } else {
-                            showMessage(
-                                message:
-                                    "Todos os campos devem ser preenchidos",
-                                context: context);
-                          }
-                        },
-                        text: "Concluir",
-                        context: context,
-                        status: colabprovider.carregando)
-                  ],
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Form(
+                child: Center(
+                  child: Column(
+                    children: [
+                      customTextField(
+                          title: 'Nome do funcionário',
+                          controller: _nome,
+                          hint: 'Digite o nome do funcionário',
+                          tipo: TextInputType.text),
+                      customTextField(
+                          title: 'Ctps',
+                          controller: _ctps,
+                          hint: 'Digite o ctps do funcionário',
+                          tipo: TextInputType.text),
+                      customTextField(
+                          title: 'Telefone',
+                          controller: _telefone,
+                          hint: 'Digite o telefone do funcionário',
+                          tipo: TextInputType.phone,
+                          formatacao: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            TelefoneInputFormatter(),
+                          ]),
+                      customTextField(
+                          title: 'Cpf',
+                          controller: _cpf,
+                          hint: 'Digite o cpf do funcionário',
+                          tipo: TextInputType.number,
+                          formatacao: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CpfInputFormatter()
+                          ]),
+                      customTextField(
+                          title: 'E-mail',
+                          controller: _email,
+                          hint: 'Digite o email do funcionário',
+                          tipo: TextInputType.emailAddress),
+                      customTextField(
+                          title: 'Data de admissão',
+                          controller: _dataAdmissao,
+                          hint: 'Digite a data de admissão do funcionário',
+                          tipo: TextInputType.datetime,
+                          formatacao: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            DataInputFormatter(),
+                          ]),
+                      customButton(
+                          tap: () {
+                            if (_formKey.currentState!.validate()) {
+                              colabprovider.cadastrar(
+                                  context,
+                                  _nome.text,
+                                  _ctps.text,
+                                  _telefone.text,
+                                  _cpf.text,
+                                  _email.text,
+                                  _dataAdmissao.text);
+                            } else {
+                              showMessage(
+                                  message:
+                                      "Todos os campos devem ser preenchidos",
+                                  context: context);
+                            }
+                          },
+                          text: "Concluir",
+                          context: context,
+                          status: colabprovider.carregando)
+                    ],
+                  ),
                 ),
               ),
             ),

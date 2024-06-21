@@ -15,29 +15,32 @@ class _AdminState extends State<Admin> {
       appBar: AppBar(
         title: const Text("Administrativo"),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Text("Bemn-vindo"),
-            customButton(
-                text: "Cadastrar Epi",
-                tap: () {
-                  Navigator.pushNamed(context, '/adminepi');
-                },
-                context: context),
-            customButton(
-                text: "Cadastrar Funcionário",
-                tap: () {
-                  Navigator.pushNamed(context, '/admfunc');
-                },
-                context: context),
-            customButton(
-                text: "Cadastrar Entrega",
-                tap: () {
-                  Navigator.pushNamed(context, '/admentrega');
-                },
-                context: context)
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+            children: [
+              const Text("Bemn-vindo"),
+              customButton(
+                  text: "Cadastrar Epi",
+                  tap: () {
+                    Navigator.pushNamed(context, '/adminepi');
+                  },
+                  context: context),
+              customButton(
+                  text: "Cadastrar Funcionário",
+                  tap: () {
+                    Navigator.pushNamed(context, '/admfunc');
+                  },
+                  context: context),
+              customButton(
+                  text: "Cadastrar Entrega",
+                  tap: () {
+                    Navigator.pushNamed(context, '/admentrega');
+                  },
+                  context: context)
+            ],
+          ),
         ),
       ),
     );

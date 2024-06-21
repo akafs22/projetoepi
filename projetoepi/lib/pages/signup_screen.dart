@@ -43,51 +43,54 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     return Consumer<UsuarioCadastro>(builder: (context, usuario, _) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            customTextField(
-              title: 'Email',
-              controller: _emailController,
-              hint: 'Digite seu e-mail',
-              tipo: TextInputType.emailAddress,
-            ),
-            customTextField(
-              title: 'CPF',
-              controller: _cpfController,
-              hint: 'Digite seu cpf',
-              formatacao: [
-                FilteringTextInputFormatter.digitsOnly,
-                CpfInputFormatter(),
-              ]
-            ),
-            const SizedBox(height: 20),
-            customButton(
-              tap: () async {
-                await usuario.checarUsuario(
-                    _cpfController.text, _emailController.text);
-                if (usuario.valido) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ConfirmPassword(
-                              email: _emailController.text,
-                              cpf: _cpfController.text,
-                            )),
-                  );
-                } else {
-                  showMessage(
-                    message: usuario.msgError,
-                    context: context
-                  );
-                }
-              },
-              text: "Avançar",
-              context: context,
-              status: usuario.carregando
-            )
-          ],
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              customTextField(
+                title: 'Email',
+                controller: _emailController,
+                hint: 'Digite seu e-mail',
+                tipo: TextInputType.emailAddress,
+              ),
+              customTextField(
+                title: 'CPF',
+                controller: _cpfController,
+                hint: 'Digite seu cpf',
+                formatacao: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CpfInputFormatter(),
+                ]
+              ),
+              const SizedBox(height: 20),
+              customButton(
+                tap: () async {
+                  await usuario.checarUsuario(
+                      _cpfController.text, _emailController.text);
+                  if (usuario.valido) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ConfirmPassword(
+                                email: _emailController.text,
+                                cpf: _cpfController.text,
+                              )),
+                    );
+                  } else {
+                    showMessage(
+                      message: usuario.msgError,
+                      context: context
+                    );
+                  }
+                },
+                text: "Avançar",
+                context: context,
+                status: usuario.carregando
+              )
+            ],
+          ),
         ),
       );
     });

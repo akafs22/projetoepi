@@ -25,41 +25,44 @@ class _AdminEpiState extends State<AdminEpi> {
           appBar: AppBar(
             title: const Text('Administrativo'),
           ),
-          body: Center(
-            child: Column(
-              children: [
-                customTextField(
-                    title: 'Nome',
-                    controller: _nome,
-                    hint: 'Digite o nome do Epi',
-                    tipo: TextInputType.text),
-
-                    customTextField(
-                    title: 'Nomedo epi',
-                    controller: _instrucoes,
-                    hint: 'Digite o nome do Epi',
-                    tipo: TextInputType.text),
-
-                    customButton(
-                        tap: () {
-                          if (_formKey.currentState!.validate()) {
-                            epiprovider.cadastrar(
-                              context,
-                              _nome.text,
-                              _instrucoes.text,
-                            
-                            );
-                          } else {    
-                            showMessage(
-                                message:
-                                    "Todos os campos devem ser preenchidos",
-                                context: context);
-                          }
-                        },
-                        text: "Concluir",
-                        context: context,
-                        status: epiprovider.carregando)
-              ],
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                children: [
+                  customTextField(
+                      title: 'Nome',
+                      controller: _nome,
+                      hint: 'Digite o nome do Epi',
+                      tipo: TextInputType.text),
+            
+                      customTextField(
+                      title: 'Nomedo epi',
+                      controller: _instrucoes,
+                      hint: 'Digite o nome do Epi',
+                      tipo: TextInputType.text),
+            
+                      customButton(
+                          tap: () {
+                            if (_formKey.currentState!.validate()) {
+                              epiprovider.cadastrar(
+                                context,
+                                _nome.text,
+                                _instrucoes.text,
+                              
+                              );
+                            } else {    
+                              showMessage(
+                                  message:
+                                      "Todos os campos devem ser preenchidos",
+                                  context: context);
+                            }
+                          },
+                          text: "Concluir",
+                          context: context,
+                          status: epiprovider.carregando)
+                ],
+              ),
             ),
           )),
     );
